@@ -10,6 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20110716023153) do
+
+  create_table "entries", :force => true do |t|
+    t.string   "food"
+    t.string   "amount"
+    t.time     "time"
+    t.string   "location"
+    t.string   "sensory"
+    t.string   "emotional"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
