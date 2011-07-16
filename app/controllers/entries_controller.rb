@@ -1,8 +1,11 @@
 class EntriesController < ApplicationController
+  include EntriesHelper
+  before_filter :set_date
+  
   # GET /entries
   # GET /entries.xml
   def index
-    @entries = Entry.all
+    @entries = Entry.find_all_by_time params[:date]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -79,5 +82,10 @@ class EntriesController < ApplicationController
       format.html { redirect_to(entries_url) }
       format.xml  { head :ok }
     end
+  end
+  
+private
+  def set_date
+    params[:date] ||= todays_date
   end
 end

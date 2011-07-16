@@ -10,6 +10,12 @@ module HtmlSelectorsHelpers
 
     when "the page"
       "html > body"
+      
+    when "the title"
+      "html > body h1"
+      
+    when "the food table"
+      "html > body table.food"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

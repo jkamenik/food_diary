@@ -6,7 +6,20 @@ Feature: index features
   Scenario: todays date
     Given I am on the home page
     Then I should see today's date
-     And I should see a table to food
+  
+  Scenario: food table
+    Given I am on the home page
+    Then I should see a table of food
+
+  @wip
+  Scenario: food table
+    Given I have entries with the following attributes:
+      | food      | amount | time   | location | sensory | emotional |
+      | hamburger | 10oz   | 6:45am | kitchen  |         |           |
+    When I go to the home page
+    Then show me the page
+    Then I should see a table of food
+     And the food table should contain
      
   Scenario: date selector
     Given I am on the home page

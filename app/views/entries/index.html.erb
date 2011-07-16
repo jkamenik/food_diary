@@ -1,19 +1,16 @@
-<h1>Listing entries</h1>
+<h1>Food for <%= todays_date %></h1>
 
-<table>
+<table class=food>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Food</th>
+    <th>Amount</th>
+    <th>Time/Place</th>
+    <th>Sensory</th>
+    <th>Emotional</th>
+    <th>Action</th>
   </tr>
-
-<% @entries.each do |entry| %>
-  <tr>
-    <td><%= link_to 'Show', entry %></td>
-    <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-    <td><%= link_to 'Destroy', entry, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  
+  <%= render :partial => 'entry_row', :collection => @entries %>
 </table>
 
 <br />
