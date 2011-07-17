@@ -4,7 +4,7 @@ class CreateEntries < ActiveRecord::Migration
       t.date   :time
       t.string :food
       t.string :amount
-      t.string :time
+      t.string :meal_time
       t.string :location
       t.string :sensory
       t.string :emotional
