@@ -1,5 +1,9 @@
 require 'spec_helper'
 
-describe Entries do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Entry do
+  context "#save" do
+    subject { Entry.new }
+    before { subject.save }
+    it { subject.time.should == Time.now.to_date }
+  end
 end
