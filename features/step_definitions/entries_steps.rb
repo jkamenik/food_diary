@@ -21,5 +21,11 @@ Then /^show me entries$/ do
 end
 
 Then /^the food table should contain:$/ do |table|
-  table.diff! tableish(selector_for("the food table"),'td,th')
+  # Correct, the table in the feature is the expected value
+  tableish(selector_for("food table row"),'td,th').should =~ table.raw
+end
+
+Then /^there should be no entries$/ do
+  # only 1 header row should exist
+  tableish(selector_for("food table row"),'td,th').size.should == 1
 end

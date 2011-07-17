@@ -11,17 +11,25 @@ Feature: index features
     Given I am on the home page
     Then I should see a table of food
 
-  @wip
   Scenario: food table
     Given I have entries with the following attributes:
-      | food      | amount | time   | location | sensory | emotional |
-      | hamburger | 10oz   | 6:45am | kitchen  |         |           |
+      | food      | amount | meal_time | location | sensory | emotional |
+      | hamburger | 10oz   | 6:45am    | kitchen  |         |           |
     When I go to the home page
     Then I should see a table of food
      And the food table should contain:
-      | Food      | Amount | Time/Place      | Sensory | Emotional | Action      |
-      | Hamburger | 10oz   | 6:45am; Kitchen |         |           | Edit/Delete |
-     
+      | Food      | Amount | Time/Place      | Sensory | Emotional | Action        |
+      | Hamburger | 10oz   | 6:45am; Kitchen |         |           | Edit / Delete |
+      
+  Scenario: delete item
+    Given I have entries with the following attributes:
+      | food      | amount | meal_time | location | sensory | emotional |
+      | hamburger | 10oz   | 6:45am    | kitchen  |         |           |
+    And I am on the home page
+    When I follow "Delete"
+    Then there should be no entries
+  
+  ####### TODO ######
   Scenario: date selector
     Given I am on the home page
     When I click the date
@@ -41,13 +49,5 @@ Feature: index features
      And I press enter
     Then I should see table:
       | Hamburger | 10oz | 6:45am; Kitchen | Not hungry | Tired |
-      
-  Scenario: delete item
-    Given the following entries exist:
-      | food      | amount | time   | location | sensory | emotional |
-      | hamburger | 10oz   | 6:45am | kitchen  |         |           |
-    And I am on the home page
-    When I click 'delete'
-    Then there should be no entries
     
   Scenario: edit existing entry

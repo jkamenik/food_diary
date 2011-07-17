@@ -16,6 +16,9 @@ module HtmlSelectorsHelpers
       
     when "the food table"
       "html > body table.food"
+      
+    when 'food table row'
+      'html > body table.food tr'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
