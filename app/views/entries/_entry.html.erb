@@ -1,6 +1,10 @@
 <tr>
-  <td><%= entry.food %></td>
-  <td><%= link_to 'Show', entry %></td>
-  <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-  <td><%= link_to 'Destroy', entry, :confirm => 'Are you sure?', :method => :delete %></td>
+  <td><%= entry.food.titleize %></td>
+  <td><%= entry.amount %></td>
+  <td><%= "#{entry.meal_time}; #{entry.location.titleize}" %></td>
+  <td><%= entry.sensory.titleize %></td>
+  <td><%= entry.emotional.titleize %></td>
+  <td>
+    <%= link_to 'Edit', edit_entry_path(entry) -%> / <%= link_to 'Delete', entry, :confirm => 'Are you sure?', :method => :delete %>
+  </td>
 </tr>
