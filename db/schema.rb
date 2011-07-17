@@ -13,9 +13,10 @@
 ActiveRecord::Schema.define(:version => 20110716023153) do
 
   create_table "entries", :force => true do |t|
-    t.date     "time",       :limit => 255
+    t.date     "time"
     t.string   "food"
     t.string   "amount"
+    t.string   "meal_time"
     t.string   "location"
     t.string   "sensory"
     t.string   "emotional"
