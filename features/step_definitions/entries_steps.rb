@@ -19,3 +19,7 @@ Then /^show me entries$/ do
     puts e.inspect
   end
 end
+
+Then /^the food table should contain:$/ do |table|
+  table.diff! tableish(selector_for("the food table"),'td,th')
+end

@@ -17,9 +17,10 @@ Feature: index features
       | food      | amount | time   | location | sensory | emotional |
       | hamburger | 10oz   | 6:45am | kitchen  |         |           |
     When I go to the home page
-    Then show me the page
     Then I should see a table of food
-     And the food table should contain
+     And the food table should contain:
+      | Food      | Amount | Time/Place      | Sensory | Emotional | Action      |
+      | Hamburger | 10oz   | 6:45am; Kitchen |         |           | Edit/Delete |
      
   Scenario: date selector
     Given I am on the home page
