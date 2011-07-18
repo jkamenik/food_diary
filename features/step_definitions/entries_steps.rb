@@ -26,6 +26,6 @@ Then /^the food table should contain:$/ do |table|
 end
 
 Then /^there should be no entries$/ do
-  # only 1 header row and 1 form row should exist
-  tableish(selector_for("food table row"),'td,th').size.should == 2
+  # only 1 header row should exist
+  tableish(selector_for("food table row"),'td,th').size.should == 1
 end

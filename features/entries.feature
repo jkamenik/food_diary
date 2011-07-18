@@ -14,20 +14,18 @@ Feature: index features
   Scenario: food table
     Given I have entries with the following attributes:
       | food      | amount | meal_time | location | sensory | emotional |
-      | hamburger | 10oz   | 6:45am    | kitchen  |         |           |
+      | hamburger | 10oz   | 6:45am    | kitchen  | sorry   | sad       |
     When I go to the home page
     Then I should see a table of food
      And the food table should contain:
       | Food      | Amount | Time/Place      | Sensory | Emotional | Action        |
-      | Hamburger | 10oz   | 6:45am; Kitchen |         |           | Edit / Delete |
-      |           |        | /               |         |           |               |
-      # ^^^^^ Above is the empty row for the entry form ^^^^^
+      | Hamburger | 10oz   | 6:45am; Kitchen | Sorry   | Sad       | Edit / Delete |
   
   @javascript
   Scenario: delete item
     Given I have entries with the following attributes:
       | food      | amount | meal_time | location | sensory | emotional |
-      | hamburger | 10oz   | 6:45am    | kitchen  |         |           |
+      | hamburger | 10oz   | 6:45am    | kitchen  | sorry   | sad       |
     And I am on the home page
     When I follow "Delete"
     Then I should be on the entries page
@@ -47,8 +45,6 @@ Feature: index features
     And the food table should contain:
      | Food      | Amount | Time/Place      | Sensory    | Emotional | Action        |
      | Hamburger | 10oz   | 6:45am; Kitchen | Not Hungry | Tired     | Edit / Delete |
-     |           |        | /               |            |           |               |
-     # ^^^^^ Above is the empty row for the entry form ^^^^^
   
   Scenario: first add of the day requires meal time/location/sensory
     Given I am on the home page
@@ -85,8 +81,6 @@ Feature: index features
       | Sausage   | 2oz    | 5:45am; Kitchen | Not Hungry  | Tired     | Edit / Delete |
       | Hamburger | 10oz   | 12:00pm; Mall   | Very Hungry | Bored     | Edit / Delete |
       | Juice     | 8oz    | 12:00pm; Mall   | Very Hungry | Bored     | Edit / Delete |
-      |           |        | /               |             |           |               |
-      # ^^^^^ Above is the empty row for the entry form ^^^^^
   
   ####### TODO ######
   # Scenario: date selector
