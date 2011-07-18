@@ -11,6 +11,9 @@ module HtmlSelectorsHelpers
     when "the page"
       "html > body"
       
+    when 'the error explanation'
+      'div#error_explanation ul'
+      
     when "the notice"
       "p#notice"
       
