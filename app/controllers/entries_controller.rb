@@ -6,33 +6,11 @@ class EntriesController < ApplicationController
   # GET /entries.xml
   def index
     @entries = Entry.find_all_by_time params[:date]
-    @entry   = Entry.new
+    @entry   ||= Entry.new
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @entries }
-    end
-  end
-
-  # GET /entries/1
-  # GET /entries/1.xml
-  def show
-    @entry = Entry.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @entry }
-    end
-  end
-
-  # GET /entries/new
-  # GET /entries/new.xml
-  def new
-    @entry = Entry.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @entry }
     end
   end
 
@@ -51,7 +29,10 @@ class EntriesController < ApplicationController
         format.html { redirect_to(:action => :index, :notice => 'Entry was successfully created.') }
         format.xml  { render :xml => @entry, :status => :created, :location => @entry }
       else
-        format.html { render :action => "new" }
+        format.html do
+          @entries = Entry.find_all_by_time params[:date]
+          render :action => "index"
+        end
         format.xml  { render :xml => @entry.errors, :status => :unprocessable_entity }
       end
     end
