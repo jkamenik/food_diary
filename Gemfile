@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem "rake", "0.8.7" # fixes heroku
 gem 'rails', '3.0.9'
 gem 'jquery-rails'
 
@@ -23,6 +24,7 @@ gem 'jquery-rails'
 # gem 'aws-s3', :require => 'aws/s3'
 
 group :development, :test do
+  gem 'heroku'
   gem 'sqlite3'
   gem 'rspec'
   gem 'rspec-rails'
