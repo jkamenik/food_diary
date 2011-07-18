@@ -1,17 +1,10 @@
 <%= form_for(@entry) do |f| %>
-  <% if @entry.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
-
-      <ul>
-      <% @entry.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <tr>
+    <td><%= f.text_field :food %></td>
+    <td><%= f.text_field :amount %></td>
+    <td><%= f.text_field :meal_time %>/<%= f.text_field :location %></td>
+    <td><%= f.text_field :sensory %></td>
+    <td><%= f.text_field :emotional %></td>
+    <td><%= f.submit %><input type=reset value="Cancel"></td>
+  </tr>
 <% end %>
