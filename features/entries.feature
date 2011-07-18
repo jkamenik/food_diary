@@ -50,6 +50,44 @@ Feature: index features
      |           |        | /               |            |           |               |
      # ^^^^^ Above is the empty row for the entry form ^^^^^
   
+  Scenario: first add of the day requires meal time/location/sensory
+    Given I am on the home page
+    When I fill in the following:
+      | entry_food      | juice |
+      | entry_amount    | 8oz   |
+      | entry_meal_time |       |
+      | entry_location  |       |
+      | entry_sensory   |       |
+      | entry_emotional |       |
+    And I press "Create Entry"
+    Then I should be on the entries page
+    And I should see "Meal time should be in the form of a time" within the error explanation
+    And I should see "Location can't be blank" within the error explanation
+    And I should see "Sensory can't be blank" within the error explanation
+    And I should see "Emotional can't be blank" within the error explanation
+  
+  Scenario: Adding with blank time/place/sensory/emotional should copy from previous for the day
+    Given I have entries with the following attributes:
+      | food      | amount | meal_time | location | sensory     | emotional |
+      | sausage   | 2oz    | 5:45am    | kitchen  | not hungry  | tired     |
+      | hamburger | 10oz   | 12:00pm   | mall     | very hungry | bored     |
+    Given I am on the home page
+    When I fill in the following:
+      | entry_food      | juice |
+      | entry_amount    | 8oz   |
+      | entry_meal_time |       |
+      | entry_location  |       |
+      | entry_sensory   |       |
+      | entry_emotional |       |
+    And I press "Create Entry"
+    Then the food table should contain:
+      | Food      | Amount | Time/Place      | Sensory     | Emotional | Action        |
+      | Sausage   | 2oz    | 5:45am; Kitchen | Not Hungry  | Tired     | Edit / Delete |
+      | Hamburger | 10oz   | 12:00pm; Mall   | Very Hungry | Bored     | Edit / Delete |
+      | Juice     | 8oz    | 12:00pm; Mall   | Very Hungry | Bored     | Edit / Delete |
+      |           |        | /               |             |           |               |
+      # ^^^^^ Above is the empty row for the entry form ^^^^^
+  
   ####### TODO ######
   # Scenario: date selector
   #   Given I am on the home page
