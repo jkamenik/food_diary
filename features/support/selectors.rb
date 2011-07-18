@@ -11,6 +11,9 @@ module HtmlSelectorsHelpers
     when "the page"
       "html > body"
       
+    when "the notice"
+      "p#notice"
+      
     when "the title"
       "html > body h1"
       

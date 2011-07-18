@@ -6,6 +6,7 @@ class EntriesController < ApplicationController
   # GET /entries.xml
   def index
     @entries = Entry.find_all_by_time params[:date]
+    @entry   = Entry.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -47,7 +48,7 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to(@entry, :notice => 'Entry was successfully created.') }
+        format.html { redirect_to(:action => :index, :notice => 'Entry was successfully created.') }
         format.xml  { render :xml => @entry, :status => :created, :location => @entry }
       else
         format.html { render :action => "new" }
@@ -79,7 +80,7 @@ class EntriesController < ApplicationController
     @entry.destroy
 
     respond_to do |format|
-      format.html { redirect_to(entries_url) }
+      format.html { redirect_to(:action => :index) }
       format.xml  { head :ok }
     end
   end
