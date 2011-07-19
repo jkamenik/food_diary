@@ -1,6 +1,5 @@
 class Entry < ActiveRecord::Base
-  before_validation :set_time
-  before_validation :copy_older
+  before_validation :set_time, :copy_older, :expand_meal_time
   
   validates_presence_of :food
   validates_presence_of :amount
@@ -24,5 +23,13 @@ private
     self.location  = older.location if self.location.blank?
     self.sensory   = older.sensory if self.sensory.blank?
     self.emotional = older.emotional if self.emotional.blank?
+  end
+  
+  def expand_meal_time
+    return if self.meal_time.blank?
+    return if self.meal_time.include? ':'
+    if self.meal_time =~ /(\d)(am|pm)/
+      self.meal_time = "#{$1}:00#{$2}"
+    end
   end
 end
