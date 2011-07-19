@@ -20,13 +20,9 @@ private
     older = Entry.find_last_by_time self.time
     return unless older
     
-    puts self.inspect
-    
     self.meal_time = older.meal_time if self.meal_time.blank?
     self.location  = older.location if self.location.blank?
     self.sensory   = older.sensory if self.sensory.blank?
     self.emotional = older.emotional if self.emotional.blank?
-    
-    puts self.inspect
   end
 end
