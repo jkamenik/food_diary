@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.xml
   def index
-    @entries = Entry.find_all_by_time params[:date]
+    @entries = Entry.find_all_by_time(params[:date], :order => :created_at)
     @entry   ||= Entry.new
 
     respond_to do |format|
@@ -45,7 +45,7 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       if @entry.update_attributes(params[:entry])
-        format.html { redirect_to(@entry, :notice => 'Entry was successfully updated.') }
+        format.html { redirect_to(:action => :index, :notice => 'Entry was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
