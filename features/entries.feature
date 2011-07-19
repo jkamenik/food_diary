@@ -111,6 +111,21 @@ Feature: index features
       And the food table should contain:
        | Food      | Amount | Time/Place   | Sensory | Emotional | Action        |
        | Juice     | 8oz    | 1:00pm; Here | Here    | Here      | Edit / Delete |
+
+  Scenario: allow partial time
+    Given I have entries with the following attributes:
+      | food      | amount | meal_time | location | sensory     | emotional |
+      | sausage   | 2oz    | 5:45am    | kitchen  | not hungry  | tired     |
+    Given I am on the home page
+    When I follow "Edit"
+     And I fill in the following:
+      | entry_meal_time | 1pm |
+     And I press "Update Entry"
+     Then I should be on the entries page
+      And I should see "Entry was successfully updated." within the notice
+      And the food table should contain:
+       | Food      | Amount | Time/Place      | Sensory    | Emotional | Action        |
+       | Sausage   | 2oz    | 1:00pm; Kitchen | Not Hungry | Tired     | Edit / Delete |
     
   
   ####### TODO ######
